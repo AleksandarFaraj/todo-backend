@@ -8,11 +8,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   Logger.warn(process.env.NODE_ENV)
-  if (process.env.NODE_ENV === "development") {
-    if (process.env.CORS) {
-      Logger.warn('Enabling cors, most likely .env.development')
-    }
+
+  if (process.env.CORS) {
+    Logger.warn('Enabling cors, most likely .env.development')
   }
+
 
 
   configService.get("CORS") && app.enableCors();
@@ -23,7 +23,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
