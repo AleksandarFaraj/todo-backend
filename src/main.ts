@@ -12,10 +12,8 @@ async function bootstrap() {
   if (process.env.CORS) {
     Logger.warn('Enabling cors, most likely .env.development')
   }
-
-
-
   configService.get("CORS") && app.enableCors();
+  configService.get("CORS_ORIGIN") && app.enableCors({ origin: configService.get("CORS_ORIGIN") });
   const config = new DocumentBuilder()
     .setTitle('Min Todo API')
     .setDescription('The Min Todo API description')
