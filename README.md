@@ -25,9 +25,10 @@ Finally to test watchmode:
 
 To run in production:
 
-    //process.env.CORS_ORIGIN must be the domain url that the user visits. Exact syntax http[s]://domain.com:<port>
+    //In order to allow users to access cross-origin, either process.env.CORS must be true 
+    // or process.env.CORS_ORIGIN must be the domain url that the user visits. Exact syntax http[s]://domain.com:<port>
     
     npm run build
     npm run start:prod
 
-
+    
